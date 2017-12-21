@@ -97,7 +97,7 @@ class AppIndex extends Component {
                 isMore = false
                 //加载数据
                 // 
-                   setTimeout(() => {// 模拟慢网速
+                   setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
                        let MoreData = getData.getDataByGet('http://localhost:5000/api/home/list')
                        MoreData
                            .then((response) => {
@@ -109,7 +109,7 @@ class AppIndex extends Component {
                                    listData: this.state.listData.concat(result.data),
                                    hasMore: result.hasMore
                                })
-                               //设置加载状态800
+                               //设置加载状态800 防止过度触发无限加载
                                setTimeout(() => {
                                    isMore = true
                                }, 800);

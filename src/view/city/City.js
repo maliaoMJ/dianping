@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import BackHeader from '../../components/BackHeader/BackHeader'
 import './City.less'
 
 class City extends Component{
@@ -15,19 +16,11 @@ class City extends Component{
      })
     //  修改redux中currentCityName
     }
-    // 返回
-    goBack(){
-        
-        this.props.history.go(-1)
-    }
     render(){
         const {currentCity} = this.state
         return (
             <div className="City">
-                <div className="header clearfix">
-                    <i className="fa fa-angle-left" onClick={this.goBack.bind(this)}></i>
-                    <span className="title">选择城市</span>
-                </div>
+               <BackHeader title="选择城市" history={this.props.history}></BackHeader>
                 <div className="currentCity">
                     <span>{currentCity.value}</span>
                 </div>

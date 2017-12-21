@@ -18,7 +18,9 @@ class IndexHeader extends Component {
                  </div>
                 </div>
                 <div className="userBox">
+                    <Link to='/user' className="cityText">
                  <i className='fa fa-user-circle-o'></i>
+                 </Link>
                 </div>
             </div>
         )
