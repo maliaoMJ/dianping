@@ -4,7 +4,7 @@ class Loadding extends Component {
 
     render(){
         return (
-            <div className="loaddingBox">
+            <div className="loaddingBox" ref='loaddingBox'>
              <i className="fa fa-spinner fa-pulse fa-fw"></i>
                <span className='tipText'>{this.props.text}</span>
             </div>

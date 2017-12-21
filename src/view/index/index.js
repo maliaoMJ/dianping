@@ -41,12 +41,12 @@ class AppIndex extends Component {
                 {/* 遍历和渲染列表组件 */}
                 {
                     this.state.listData.map((item, index)=>{
-                           return (<ListItem item={item} key={item.id}></ListItem>)
+                           return (<ListItem item={item} key={index}></ListItem>)
                     })
                 }
                
             </div>
-            <Loadding text="加载更多....."/>
+            <Loadding text="加载更多....." ref='loaddingElemet'/>
            </div>
        )
    }
@@ -80,6 +80,51 @@ class AppIndex extends Component {
        .catch((error)=>{
            console.log('获取首页列表失败')
        })
+       //3.获取节点
+       //获取loaddingBox Dom节点
+       let LoaddingBox = this.refs.loaddingElemet
+       let loaddingElemet = LoaddingBox.refs.loaddingBox
+       let isMore = true
+       //4.监听滚动事件
+       window.onscroll=(e)=>{
+           //设备屏幕高度
+           let ScreenY = window.screen.height
+           //获取loaddingBox 距离顶部的高度
+           let loaddingBoxTop = loaddingElemet.getBoundingClientRect().top;
+           if(loaddingBoxTop - ScreenY < -30){
+               if(isMore){
+                //更改加载状态    
+                isMore = false
+                //加载数据
+                // 
+                   setTimeout(() => {// 模拟慢网速
+                       let MoreData = getData.getDataByGet('http://localhost:5000/api/home/list')
+                       MoreData
+                           .then((response) => {
+                               return response.json()
+                           })
+                           .then((result) => {
+                               //设置listData
+                               this.setState({
+                                   listData: this.state.listData.concat(result.data),
+                                   hasMore: result.hasMore
+                               })
+                               //设置加载状态800
+                               setTimeout(() => {
+                                   isMore = true
+                               }, 800);
+                           })
+                           .catch((error) => {
+                               console.log('获取首页列表失败')
+                           })
+                   }, 500);
+               }
+           }
+        //    阻止默认事件和事件冒泡
+           e.preventDefault()
+           e.stopPropagation()
+       }
+
  
    }
 
