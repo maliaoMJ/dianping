@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <!-- 1、WebApp全屏模式： -->
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+  <!-- 注意：viewport 后面加上 minimal-ui 在safri 体现效果 -->
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- 2、隐藏状态栏/设置状态栏颜色： -->
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <!-- 3、safri 添加到主屏界面的显示标题： -->
+
+  <meta name="apple-mobile-web-app-title" content="应用标题">
+  <!-- 4、忽略自动识别数字为电话号码： -->
+
+  <meta content="telephone=no" name="format-detection" />
+  <!-- 5、忽略自动识别邮箱账号： -->
+
+  <meta content="email=no" name="format-detection" />
+  <!-- 6、常用浏览器全屏设置： -->
+
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>
