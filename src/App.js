@@ -4,6 +4,7 @@ import AppIndex from './view/index/index'
 import AppDetail from './view/detail/detail'
 import City from './view/city/City'
 import User from './view/user/User'
+import AllOrder from './components/AllOrder/AllOrder'
 import './App.less';
 
 class App extends Component {
