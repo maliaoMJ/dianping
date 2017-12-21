@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import BackHeader from '../../components/BackHeader/BackHeader'
-import './User.less'
 import { Route, Switch, NavLink} from 'react-router-dom'
 import AllOrder from '../../components/AllOrder/AllOrder'
 import CanUse from '../../components/CanUse/CanUse'
 import Reimburse from '../../components/Reimburse/Reimburse'
 import PengingPayList from '../../components/PendingPayList/PendingPayList'
-
+import './User.less'
 class User extends Component{
-  
     render(){
         return (
             <div className="User">
@@ -25,7 +23,7 @@ class User extends Component{
                     <div className="tabItem"><NavLink className="hrefItem" to='/user/canuse'>可使用</NavLink></div>
                     <div className="tabItem"><NavLink className="hrefItem" to='/user/reimburse'>退款/售后</NavLink></div>
                 </div>
-                <div>
+                <div className="resultBox">
                     <Switch>
                         <Route exact path={'/user/all'} component={AllOrder}></Route>
                         <Route exact path={'/user/pendingpay'} component={CanUse}></Route>
