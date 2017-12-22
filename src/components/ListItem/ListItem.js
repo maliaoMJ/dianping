@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import './ListItem.less'
 class ListItem extends Component{
     render(){
         return(
             <div className="ListItem">
+                <Link to='/detail/233' className="link">
                 <div className="contentBox">
                     <img src={`http://localhost:5000/imgs?img=${this.props.item.img}`} alt=""/>
                     <div className="info">
@@ -12,6 +14,7 @@ class ListItem extends Component{
                         <p className="bottom clearfix"><span className="left price">￥ {this.props.item.price}</span><span className="right sellCount">已售{this.props.item.number}</span></p>
                     </div>
                 </div>
+                </Link>
             </div>
         )
     }
