@@ -6,7 +6,7 @@ class NoList extends Component{
     render(){
         return (
             <div className="NoList">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <p>暂无该类订单</p>
             </div>
         )

@@ -4,7 +4,7 @@ import AppIndex from './view/index/index'
 import AppDetail from './view/detail/detail'
 import City from './view/city/City'
 import User from './view/user/User'
-import AllOrder from './components/AllOrder/AllOrder'
+import Search from './view/search/Search'
 import './App.less';
 
 class App extends Component {
@@ -15,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route exact path={'/'} component={AppIndex}></Route>
           <Route  path={'/detail/:id'} component={AppDetail}></Route>
+          <Route path={'/search'} component={Search}></Route>
           <Route path={'/city'} component={City}></Route>
           <Route path={'/user'} component={User}></Route>
         </Switch>

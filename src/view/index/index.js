@@ -20,7 +20,7 @@ class AppIndex extends Component {
    render(){
        return(
            <div className='index'>
-            <IndexHeader/>
+            <IndexHeader history = {this.props.history}/>
             <Swiper/>
             <div className="advertisementBox">
                 <div className="box">
@@ -95,29 +95,33 @@ class AppIndex extends Component {
                if(isMore){
                 //更改加载状态    
                 isMore = false
-                //加载数据
-                // 
-                   setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
-                       let MoreData = getData.getDataByGet('http://localhost:5000/api/home/list')
-                       MoreData
-                           .then((response) => {
-                               return response.json()
-                           })
-                           .then((result) => {
-                               //设置listData
-                               this.setState({
-                                   listData: this.state.listData.concat(result.data),
-                                   hasMore: result.hasMore
+                //判断是否为首页
+                   let pathName = this.props.history.location.pathname
+                   if(pathName === '/'){
+                       //加载数据
+                       // 
+                       setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
+                           let MoreData = getData.getDataByGet('http://localhost:5000/api/home/list')
+                           MoreData
+                               .then((response) => {
+                                   return response.json()
                                })
-                               //设置加载状态800 防止过度触发无限加载
-                               setTimeout(() => {
-                                   isMore = true
-                               }, 800);
-                           })
-                           .catch((error) => {
-                               console.log('获取首页列表失败')
-                           })
-                   }, 500);
+                               .then((result) => {
+                                   //设置listData
+                                   this.setState({
+                                       listData: this.state.listData.concat(result.data),
+                                       hasMore: result.hasMore
+                                   })
+                                   //设置加载状态800 防止过度触发无限加载
+                                   setTimeout(() => {
+                                       isMore = true
+                                   }, 800);
+                               })
+                               .catch((error) => {
+                                   console.log('获取首页列表失败')
+                               })
+                       }, 500);
+                   }  
                }
            }
         //    阻止默认事件和事件冒泡
