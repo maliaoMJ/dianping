@@ -3,6 +3,7 @@ import BackHeader from '../../components/BackHeader/BackHeader'
 import Star from '../../components/star/Star'
 import CommentItem from '../../components/commentItem/CommentItem'
 import getData from '../../util/getData'
+import Loadding from '../../components/Loading/Loadding'
 import './detail.less'
 
 class appDetail extends Component {
@@ -10,7 +11,8 @@ class appDetail extends Component {
        super(props)
        this.state = {
            shopInfo:{},
-           comments:[]
+           comments:[],
+           hasMore:true
        }
    }
 
@@ -43,6 +45,7 @@ class appDetail extends Component {
                        
                  </div>
                </div>
+               <Loadding text="加载更多....." ref='loaddingElemet' />
            </div>
        )
    }
@@ -76,6 +79,54 @@ class appDetail extends Component {
            .catch((error) => {
                console.log('获取数据失败！')
            })
+       //3.获取节点
+       //获取loaddingBox Dom节点
+       let LoaddingBox = this.refs.loaddingElemet
+       let loaddingElemet = LoaddingBox.refs.loaddingBox
+       let isMore = true
+       //4.监听滚动事件
+       window.onscroll = (e) => {
+           //设备屏幕高度
+           let ScreenY = window.screen.height
+           //获取loaddingBox 距离顶部的高度
+           let loaddingBoxTop = loaddingElemet.getBoundingClientRect().top;
+           if (loaddingBoxTop - ScreenY < -30) {
+               if (isMore) {
+                   //更改加载状态    
+                   isMore = false
+                   //判断是否为首页
+                   let pathName = this.props.history.location.pathname
+                   if (pathName === '/detail/233') {
+                       //加载数据
+                       // 
+                       setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
+                           let MoreData = getData.getDataByGet('http://localhost:5000/api/detail/comments?id=' + id)
+                           MoreData
+                               .then((response) => {
+                                   return response.json()
+                               })
+                               .then((result) => {
+                                   //设置listData
+                                   this.setState({
+                                       comments: this.state.comments.concat(result.data),
+                                       hasMore: result.hasMore
+                                   })
+                                   //设置加载状态800 防止过度触发无限加载
+                                   setTimeout(() => {
+                                       isMore = true
+                                   }, 800);
+                               })
+                               .catch((error) => {
+                                   console.log('获取首页列表失败')
+                               })
+                       }, 500);
+                   }
+               }
+           }
+           //    阻止默认事件和事件冒泡
+           e.preventDefault()
+           e.stopPropagation()
+       }
    }
 }
 
