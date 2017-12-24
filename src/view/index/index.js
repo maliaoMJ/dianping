@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import Store from '../../store/store'
+import {modifyRecommendResult,modifyCityName} from '../../actions/actions'
 import IndexHeader from '../../components/indexHeader/indexHeader'
 import Swiper from '../../components/Swiper/Swiper'
 import Loadding from '../../components/Loading/Loadding'
@@ -51,6 +52,12 @@ class AppIndex extends Component {
        )
    }
    componentDidMount(){
+
+   let state = Store.getState()
+   console.log(state)
+   Store.dispatch(modifyCityName('上海'))
+   console.log(state)
+
        // 1.获取首页广告数据 返回的结果均为Promise
        let AdData = getData.getDataByGet('http://localhost:5000/api/home/ad')
            AdData
