@@ -21,7 +21,7 @@ class appDetail extends Component {
            <div className="detailPage">
                <BackHeader className="header" history={this.props.history} title="商家详情"></BackHeader>
                <div className="shopInfo">
-                   <img src = {`http://114.67.151.28/imgs?img=${this.state.shopInfo.img}`} alt=""/>
+                   <img src = {`http://114.67.151.28:5000/imgs?img=${this.state.shopInfo.img}`} alt=""/>
                     <div className="infoText">
                         <p className="name">{this.state.shopInfo.title}</p>
                         <p className="price">￥{this.state.shopInfo.price}</p>
@@ -56,7 +56,7 @@ class appDetail extends Component {
        let id = this.props.match.params.id
        //向后台请求数据
        //1.店家详情数据
-       let shopInfo = getData.getDataByGet('http://localhost:5000/api/detail/shopinfo?id=' + id)
+       let shopInfo = getData.getDataByGet('http://114.67.151.28:5000/api/detail/shopinfo?id=' + id)
        shopInfo
            .then((response) => { return response.json() })
            .then((result) => {
@@ -68,7 +68,7 @@ class appDetail extends Component {
                console.log('获取数据失败！')
            })
        //2.评论数据
-       let comments = getData.getDataByGet('http://localhost:5000/api/detail/comments?id=' + id)
+       let comments = getData.getDataByGet('http://114.67.151.28:5000/api/detail/comments?id=' + id)
        comments
            .then((response) => { return response.json() })
            .then((result) => {
@@ -100,7 +100,7 @@ class appDetail extends Component {
                        //加载数据
                        // 
                        setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
-                           let MoreData = getData.getDataByGet('http://localhost:5000/api/detail/comments?id=' + id)
+                           let MoreData = getData.getDataByGet('http://114.67.151.28:5000/api/detail/comments?id=' + id)
                            MoreData
                                .then((response) => {
                                    return response.json()
