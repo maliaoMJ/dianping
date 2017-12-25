@@ -48,7 +48,7 @@ class SearchHeader extends Component{
             //将关键词放入redux
             Store.dispatch(modifySearchKeywords(keywords))  
             //向后台发起请求数据
-            let SearchData = getData.getDataByGet('http://localhost:5000/api/search?keywords=' + keywords)
+            let SearchData = getData.getDataByGet('http://114.67.151.28:5000/api/search?keywords=' + keywords)
             SearchData
                 .then((response) => { return response.json() })
                 .then((result) => {

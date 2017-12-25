@@ -42,7 +42,7 @@ class Login extends Component {
       // 此处略 
       //3.将信息添加到redux中 cookie  然后跳转用户页面   模拟成功 失败没有写
         Store.dispatch(userLogin(userName))
-        this.props.history.push('/user')
+        this.props.history.push('/user/all')
       
     }
     

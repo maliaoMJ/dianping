@@ -31,7 +31,7 @@ class AppIndex extends Component {
                     <div className="row clearfix">
                         {/* 遍历和渲染广告数据 */}
                         {this.state.adData.map((item,index)=>{
-                               return (<div className='col' key={item.img}><a href={item.link}><img src={`http://localhost:5000/imgs?img=${item.img}`} alt="" title={item.title} /></a></div>)
+                               return (<div className='col' key={item.img}><a href={item.link}><img src={`http://114.67.151.28:5000/imgs?img=${item.img}`} alt="" title={item.title} /></a></div>)
                         })}
                         
                     </div>
@@ -53,7 +53,7 @@ class AppIndex extends Component {
    }
    componentDidMount(){
        // 1.获取首页广告数据 返回的结果均为Promise
-       let AdData = getData.getDataByGet('http://localhost:5000/api/home/ad')
+       let AdData = getData.getDataByGet('http://114.67.151.28:5000/api/home/ad')
            AdData
            .then((response)=>{return response.json()})
            .then((result)=>{
@@ -67,7 +67,7 @@ class AppIndex extends Component {
                console.log('获取数据失败！')
            })
        // 2.获取首页推荐列表数据 返回的结果均为Promise
-       let ListData = getData.getDataByGet('http://localhost:5000/api/home/list')
+       let ListData = getData.getDataByGet('http://114.67.151.28:5000/api/home/list')
        ListData
        .then((response)=>{
            return response.json()
@@ -105,7 +105,7 @@ class AppIndex extends Component {
                        //加载数据
                        // 
                        setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
-                           let MoreData = getData.getDataByGet('http://localhost:5000/api/home/list')
+                           let MoreData = getData.getDataByGet('http://114.67.151.28:5000/api/home/list')
                            MoreData
                                .then((response) => {
                                    return response.json()

@@ -21,7 +21,7 @@ class appDetail extends Component {
            <div className="detailPage">
                <BackHeader className="header" history={this.props.history} title="商家详情"></BackHeader>
                <div className="shopInfo">
-                   <img src = {`http://localhost:5000/imgs?img=${this.state.shopInfo.img}`} alt=""/>
+                   <img src = {`http://114.67.151.28/imgs?img=${this.state.shopInfo.img}`} alt=""/>
                     <div className="infoText">
                         <p className="name">{this.state.shopInfo.title}</p>
                         <p className="price">￥{this.state.shopInfo.price}</p>

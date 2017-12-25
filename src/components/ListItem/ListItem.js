@@ -7,7 +7,7 @@ class ListItem extends Component{
             <div className="ListItem">
                 <Link to='/detail/233' className="link">
                 <div className="contentBox">
-                    <img src={`http://localhost:5000/imgs?img=${this.props.item.img}`} alt=""/>
+                    <img src={`http://114.67.151.28:5000/imgs?img=${this.props.item.img}`} alt=""/>
                     <div className="info">
                        <p className="top clearfix"><span className="left name">{this.props.item.title}</span><span className="right distance">{this.props.item.distance}m</span></p> 
                        <p className="center ">{this.props.item.subTitle}</p>
