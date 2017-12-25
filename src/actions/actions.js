@@ -22,28 +22,28 @@ export function modifyCityName(cityName){
 //首页推荐数据
 export function modifyRecommendResult(data){
 	return{
-		type:MODIFY_CITY,
+		type: MODIFY_INDEX_LIST,
 		data
 	}
 }
 //用户登录
 export function userLogin(userName){
 	return{
-		type:MODIFY_CITY,
+		type: USER_LOGIN,
 		userName
 	}
 }
 //搜索关键词
 export function modifySearchKeywords(keywords){
 	return{
-		type:MODIFY_CITY,
+		type: MODIFY_KEYWORDS,
 		keywords
 	}
 }
 //搜索结果数据
 export function modifySearchResult(data){
 	return{
-		type:MODIFY_CITY,
+		type: MODIFY_SEARCH_RESULT,
 		data
 	}
 }

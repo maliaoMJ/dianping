@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {  modifyCityName } from '../../actions/actions'
+import Store from '../../store/store'
 import BackHeader from '../../components/BackHeader/BackHeader'
 import './City.less'
 
@@ -15,6 +17,8 @@ class City extends Component{
          currentCity:city
      })
     //  修改redux中currentCityName
+
+    Store.dispatch(modifyCityName(city.value))
     }
     render(){
         const {currentCity} = this.state

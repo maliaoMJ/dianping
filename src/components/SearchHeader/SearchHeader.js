@@ -1,14 +1,27 @@
 import React, {Component} from 'react'
 import getData from '../../util/getData'
+import { modifySearchKeywords, modifySearchResult } from '../../actions/actions'
+import Store from '../../store/store'
 import './SearchHeader.less'
 
 
 class SearchHeader extends Component{
 
+    constructor(props){
+        super(props)
+        this.state = {
+            keywords: Store.getState().reducers.keywords ? Store.getState().reducers.keywords:''
+        }
+    }
 
     //goBack返回
     goBack(){
         this.props.history.go(-1)
+    }
+    changeKeywords(e){
+      this.setState({
+          keywords:e.target.value
+      })
     }
     //搜索函数
     SearchResult (e){
@@ -31,14 +44,17 @@ class SearchHeader extends Component{
             this.setState({
                 keywords: keywords
             })
+            
+            //将关键词放入redux
+            Store.dispatch(modifySearchKeywords(keywords))  
             //向后台发起请求数据
             let SearchData = getData.getDataByGet('http://localhost:5000/api/search?keywords=' + keywords)
             SearchData
                 .then((response) => { return response.json() })
                 .then((result) => {
                     //1.将搜素结果放入redux 中
-                    console.log(result)
                     
+                    Store.dispatch(modifySearchResult(result.data))
                 })
                 .catch((error) => {
                     console.log('获取搜索数据失败！')
@@ -53,7 +69,7 @@ class SearchHeader extends Component{
                 <div className="searchBox">
                     <div className="box">
                         <i className="fa fa-search"></i>
-                        <input type="text" onKeyDown={this.SearchResult.bind(this)}/>
+                        <input type="text" onKeyDown={this.SearchResult.bind(this)} onChange={this.changeKeywords.bind(this)} value={this.state.keywords}/>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import AppDetail from './view/detail/detail'
 import City from './view/city/City'
 import User from './view/user/User'
 import Search from './view/search/Search'
+import Login from './view/login/login'
 import './App.less';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path={'/search'} component={Search}></Route>
           <Route path={'/city'} component={City}></Route>
           <Route path={'/user'} component={User}></Route>
+          <Route path={'/login'} component={Login}></Route>
         </Switch>
       </div>
     );

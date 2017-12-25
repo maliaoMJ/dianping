@@ -1,12 +1,25 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import getData from '../../util/getData'
+import { modifySearchKeywords, modifySearchResult} from '../../actions/actions'
+import Store from '../../store/store'
 import './indexHeader.less'
 class IndexHeader extends Component {
     constructor(props){
         super(props)
         this.state={
             keywords:''
+        }
+        this.cityName = Store.getState().reducers.cityName
+    }
+    //onUser
+    onUser(){
+        let userName = Store.getState().reducers.userName
+        console.log(userName)
+        if(userName == null || userName ===''){
+            this.props.history.push('/login')
+        }else{
+            this.props.history.push('/user/all')
         }
     }
     onSearch(e){
@@ -29,13 +42,16 @@ class IndexHeader extends Component {
             this.setState({
                 keywords: keywords
             })
+            //将关键词放入redux
+            Store.dispatch(modifySearchKeywords(keywords))                            
             //向后台发起请求数据
             let SearchData = getData.getDataByGet('http://localhost:5000/api/search?keywords=' + keywords)
             SearchData
                 .then((response) => { return response.json() })
                 .then((result) => {
-                    //1.将搜素结果放入redux 中
                     
+                    //1.将搜素结果放入redux 中
+                    Store.dispatch(modifySearchResult(result.data))
                     //2.跳转到搜索结果页面 
                     this.props.history.push('/search') 
                 })
@@ -50,7 +66,7 @@ class IndexHeader extends Component {
             <div className='indexHeader'>
                 <div className="cityBox">
                     <Link to='/city' className="cityText">
-                       <span className="cityName">西安</span>
+                        <span className="cityName">{this.cityName}</span>
                        <i className='fa fa-angle-down'></i>
                    </Link>
                 </div>
@@ -60,13 +76,17 @@ class IndexHeader extends Component {
                      <input type="text" placeholder='请输入关键词' onKeyDown={this.onSearch.bind(this)}/>
                  </div>
                 </div>
-                <div className="userBox">
-                    <Link to='/user/all' className="cityText">
-                 <i className='fa fa-user-circle-o'></i>
-                 </Link>
+                <div className="userBox" onClick={this.onUser.bind(this)}>
+             
+                 <i className='fa fa-user-circle-o' ></i>
+                
                 </div>
             </div>
         )
+    }
+
+    componentDidMount(){
+        //
     }
 }
 export default IndexHeader
