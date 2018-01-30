@@ -56,7 +56,7 @@ class Search extends Component{
                         //加载数据
                         // 
                         setTimeout(() => {// 模拟慢网速 //这离可以向后台传入pageSize =1,2,3..... 设置一个pageSize变量 pageSize++
-                            let MoreData = getData.getDataByGet('http://114.67.151.28:5000/api/search')
+                            let MoreData = getData.getDataByGet('http://localhost:5000/api/search')
                             MoreData
                                 .then((response) => {
                                     return response.json()
